@@ -1,0 +1,69 @@
+# Build
+bin/
+obj/
+
+*.bin
+!tests/testdata/*.bin
+
+# User / IDE
+.vs/
+.vscode/
+*.user
+*.suo
+*.userprefs
+
+# Logs
+*.log
+
+# Logs (NLog file targets, relative "logs/" path)
+logs/
+
+# Benchmark-Ausgaben (JSON-Ergebnisse, Reports)
+*.json
+results/
+reports/
+
+# Hochgeladene Test-Dateien (Benchmark-Artefakte)
+uploads/
+
+# Test / Coverage
+TestResults/
+test-results/
+coverage/
+*.coverage
+*.coveragexml
+
+# NuGet
+*.nupkg
+.nuget/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets / Config
+appsettings.Development.json
+secrets.json
+.env
+!.env.example
+
+# Docker
+docker-data/
+minio-data/
+# Publish
+publish/
+
+# Generated files
+*.generated.cs
+
+*.pyc
+__pycache__/
+
+# Testdaten
+
+*.txt
+*.csv
+*.part
+*.jpg
+*.jpeg
+*.png

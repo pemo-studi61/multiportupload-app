@@ -1,0 +1,62 @@
+services:
+  multiportupload-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: multiportupload-api
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./uploads:/app/uploads
+      - ~/Documents/MultiPortUpload/logs:/app/logs
+      - ./storage:/app/storage
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      # Interner Endpoint (Server -> MinIO im Docker-Netz).
+      S3Storage__Endpoint: http://minio:9000
+      # Öffentlicher Endpoint, unter dem der externe Client MinIO erreicht.
+      # Presigned URLs werden gegen diesen Host signiert. Lokal: localhost:9000,
+      # auf dem Server z. B. http://<server-ip>:9000. Leer => Fallback auf Endpoint.
+      S3Storage__PublicEndpoint: "${S3_PUBLIC_ENDPOINT:-http://localhost:9000}"
+      S3Storage__AccessKey: minioadmin
+      S3Storage__SecretKey: minioadmin
+      S3Storage__BucketName: multiportupload
+      S3Storage__UsePathStyle: "true"
+      BenchmarkStorage__Enabled: "${BENCHMARK_STORAGE_ENABLED:-false}"
+      BenchmarkStorage__ConnectionString: "${BENCHMARK_DB_CONNECTION:-}"
+      BenchmarkStorage__ApplyMigrationsOnStartup: "${BENCHMARK_APPLY_MIGRATIONS:-true}"
+      # NLog schreibt nach ${MPU_LOG_ROOT}/logs -> /app/logs (gemountetes Volume)
+      MPU_LOG_ROOT: /app
+    depends_on:
+      - minio
+  minio:
+    image: quay.io/minio/minio
+    container_name: multiportupload-minio
+    command: server /data --console-address ":9001"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    volumes:
+      - ./logs:/app/logs
+      # /data an das benannte Volume binden, damit MinIOs Format/Objekte einen
+      # Container-Recreate überleben. Ohne diese Zeile liegt /data auf einem
+      # anonymen Volume und kann bei Recreate neu/leer angelegt werden ->
+      # "unformatted drive" -> alle Schreibzugriffe scheitern (500 bei Presigned).
+      - minio_data:/data
+  k6:
+    image: grafana/k6
+    volumes:
+    - ./tests/k6:/scripts
+    - ./benchmark-results:/results
+    - ./tests/testdata:/testdata
+    command: run /scripts/health.js
+    depends_on:
+    - multiportupload-api
+
+volumes:
+  minio_data:

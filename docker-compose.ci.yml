@@ -1,0 +1,7 @@
+services:
+  upload-testrunner:
+    volumes: []
+    working_dir: /workspace
+
+  multiportupload-api:
+    ports: []

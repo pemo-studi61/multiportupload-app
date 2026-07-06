@@ -1,0 +1,55 @@
+---
+- name: MultiPortUpload Plattform einrichten
+  hosts: multiportupload
+  become: true
+
+  vars:
+    app_user: multiport
+    app_dir: /opt/multiportupload
+    repo_url: "https://gitlab.com/ommi1/multiportupload.git"
+
+  tasks:
+    - name: Systempakete aktualisieren
+      ansible.builtin.apt:
+        update_cache: true
+
+    - name: Grundpakete installieren
+      ansible.builtin.apt:
+        name:
+          - git
+          - curl
+          - ca-certificates
+          - ufw
+          - docker.io
+          - docker-compose-plugin
+        state: present
+
+    - name: Deploy-Benutzer anlegen
+      ansible.builtin.user:
+        name: "{{ app_user }}"
+        groups: docker
+        append: true
+        shell: /bin/bash
+        create_home: true
+
+    - name: Anwendungsverzeichnis anlegen
+      ansible.builtin.file:
+        path: "{{ app_dir }}"
+        state: directory
+        owner: "{{ app_user }}"
+        group: "{{ app_user }}"
+        mode: "0755"
+
+    - name: Repository klonen oder aktualisieren
+      ansible.builtin.git:
+        repo: "{{ repo_url }}"
+        dest: "{{ app_dir }}"
+        version: main
+        force: true
+      become_user: "{{ app_user }}"
+
+    - name: Anwendung starten
+      community.docker.docker_compose_v2:
+        project_src: "{{ app_dir }}"
+        state: present
+        build: always

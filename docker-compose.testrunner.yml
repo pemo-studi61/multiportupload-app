@@ -1,0 +1,33 @@
+services:
+  upload-testrunner:
+    build:
+      context: .
+      dockerfile: Dockerfile.testrunner
+
+    platform: linux/amd64
+    container_name: multiportupload-testrunner
+
+    stdin_open: true
+    tty: true
+
+    command:
+      - -File
+      - ./tests/scripts/Run-PersonaBenchmark.ps1
+
+    cap_add:
+      - NET_ADMIN
+
+    volumes:
+      - ./:/workspace
+
+    working_dir: /workspace
+
+    depends_on:
+      - multiportupload-api
+
+    tmpfs:
+      - /tmp:rw,size=512m
+
+    environment:
+      PROJECT_ROOT: /workspace/tests
+      BASE_URL: http://multiportupload-api:8080

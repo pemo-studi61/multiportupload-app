@@ -1,0 +1,233 @@
+.fieldtest-page {
+  min-height: 100vh;
+  background: #f3f4f6;
+  padding: 16px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.fieldtest-card {
+  max-width: 480px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.fieldtest-title {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.fieldtest-subtitle {
+  margin-top: 8px;
+  color: #4b5563;
+  font-size: 0.95rem;
+}
+
+.fieldtest-group {
+  margin-top: 18px;
+}
+
+.fieldtest-label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.fieldtest-select,
+.fieldtest-file {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 1rem;
+  background: white;
+}
+
+.fieldtest-button {
+  width: 100%;
+  margin-top: 20px;
+  border: none;
+  border-radius: 14px;
+  padding: 15px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: white;
+  background: #2563eb;
+}
+
+.fieldtest-button:disabled {
+  opacity: 0.6;
+}
+
+.fieldtest-info,
+.fieldtest-result,
+.fieldtest-list,
+.fieldtest-error {
+  margin-top: 16px;
+  border-radius: 14px;
+  padding: 14px;
+  font-size: 0.95rem;
+  word-break: break-word;
+}
+
+.fieldtest-info {
+  background: #f9fafb;
+}
+
+.fieldtest-result {
+  background: #ecfdf5;
+}
+
+.fieldtest-list {
+  background: #f3f4f6;
+}
+
+.fieldtest-error {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.fieldtest-list ul {
+  margin: 10px 0 0;
+  padding-left: 18px;
+}
+
+.fieldtest-list li {
+  margin-bottom: 8px;
+}
+
+.fieldtest-upload-list {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    list-style: none;
+    padding: 0;
+}
+
+.fieldtest-result-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.fieldtest-metric {
+    background: white;
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.fieldtest-metric-label {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.fieldtest-metric-value {
+    margin-top: 4px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.fieldtest-upload-list {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    list-style: none;
+    padding: 0;
+}
+
+.fieldtest-upload-item {
+    background: white;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.fieldtest-upload-name {
+    font-weight: 600;
+    word-break: break-word;
+    margin-bottom: 8px;
+}
+
+.fieldtest-upload-meta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.fieldtest-file-button {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px dashed #93c5fd;
+    border-radius: 14px;
+    padding: 18px;
+    text-align: center;
+    font-weight: 700;
+    color: #1d4ed8;
+    background: #eff6ff;
+    cursor: pointer;
+}
+
+.fieldtest-file-button:active {
+    transform: scale(0.98);
+}
+
+.fieldtest-textarea {
+    width: 100%;
+    min-height: 120px;
+    box-sizing: border-box;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    padding: 14px;
+    font-size: 1rem;
+    resize: vertical;
+}
+
+.fieldtest-secondary-button {
+    width: 100%;
+    margin-top: 10px;
+    border: none;
+    border-radius: 12px;
+    padding: 13px;
+    font-size: 1rem;
+    font-weight: 700;
+    background: #e5e7eb;
+    color: #111827;
+}
+
+.fieldtest-comment-wrapper {
+    position: relative;
+}
+
+.fieldtest-textarea-with-button {
+    padding-right: 56px;
+}
+
+.fieldtest-mic-button {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+    background: #2563eb;
+    color: white;
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+.fieldtest-mic-button:active {
+    transform: scale(0.95);
+}

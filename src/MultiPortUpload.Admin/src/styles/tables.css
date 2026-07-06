@@ -1,0 +1,27 @@
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.log-column-filename {
+    width: 65%;
+}
+
+.log-column-date {
+    width: 20%;
+}
+
+.log-column-size {
+    width: 10%;
+}
+
+.log-column-action {
+    width: 5%;
+}
