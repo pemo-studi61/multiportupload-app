@@ -1,14 +1,51 @@
 # MultiPortUpload
 
-Ein .NET-9-Microservice, der Datei-Uploads über **mehrere austauschbare
-Upload-Strategien** ("Ports"/Adapter) abwickelt und die Performance jeder
-Variante misst (Benchmarking). Derselbe Upload kann zur Laufzeit über
-verschiedene Backends laufen — lokale Platte, S3/MinIO, In-Memory, presigned
-URLs, chunked/resumable — und so vergleichbar gemacht werden.
+Letzte Aktualisierung: **10/07/2026**
 
-Das Projekt folgt der **Clean Architecture** (Ports & Adapter); die
-Schichtgrenzen werden statisch mit NetArchTest erzwungen. Eine ausführliche
-Beschreibung findest du in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+## Auswertung der Messdaten über ein Jupyter-Notebook
+
+Die Auswertung der bereits vorliegenden Benchmarkdaten (aktuell stehen drei Benchmarkläufe zur Auswahl) in Gestalt einer JSON-Datei, die alle BenchmarkRecords enthält, können im Rahmen eines Juypter-Notebooks durchgeführt werden:
+
+[Notebook für die Auswertung der Benchmarkdaten](https://drive.google.com/file/d/1D6BBlFo7uSs8M_ATjUUiPW-YrXLvuas8/view?usp=sharing)
+
+## Projektbeschreibung
+
+*MultiPortUpload* ist ein auf ASP.NET 9 basierender Webservice, der eine REST-API anbietet. Der Webservice wird auf *DigitalOcean* gehostet und kann über die Public-IP direkt angesprochen werden.
+
+Aufruf der "Health-Checks":
+
+```Bash
+curl http://157.230.100.116:8080/health
+```
+
+Aufruf der API-Dokumentation im Browser:
+
+```Bash
+http://157.230.100.116:8080/api/docs
+```
+
+Der Hauptzweck von *MultiPortUpload* ist seine Rolle als Backend für das Durchführen von Benchmarks. Dabei werden Dateien hochgeladen und es wird die Ausführungszeit gemessen. Für das Durchführen von Bechmarks gibt es mit `multiportupload-eval` ein eigenes Projekt. Dieses besteht aus einem Satz von PowerShell-Skripten. Da sie auf *PowerShell 7* basieren, können sie auch unter *Linux* oder *MacOS* ausgeführt werden (alle Benchmarktests für die Masterarbeit wurden unter *MacOS* durchgeführt).
+
+Wurde das Projekt geclont, muss eventuell das Modul *PowerShell-Yaml* nachinstalliert werden:
+
+```PowerShell
+Install-Module PowerShell-Yaml -Force
+```
+Der BenchmarkRunner wird über das Skript `Start-BenchmarkLauncher.ps1` gestartet:
+
+```Bash
+pwsh ./Start-BenchmarkLauncher.ps1
+```
+
+Voraussetzung ist natürlich, dass (auch unter Windows 11) zuvor *PowerShell 7* installiert wurde.
+
+Sollte sich die IP-Adresse der Multiport-Anwendung geändert haben, z.B. weil die Anwendung lokal ausgeführt wird, wird dies in der Konfigurationsdatei `benchmark-config.psd1` eingetragen.
+
+Nach dem Start von `Start-BenchmarkLauncher.ps1?` wird ein Auswahlmenü angeboten. Ein vollständiger Benchmarklauf mit 800 Uploads wird über den Menüpunkt **FullRun** gestartet.
+
+**Wichtig:** Ein FullRun dauert über 13 Stunden!
+
+**Tipp:** Sollte der Server per SSH angesprochen werden, ist es absolut notwendig, dafür *tmux* zu verwenden, da ansonsten bei einem Sessionabbruch alle Daten verloren wären.
 
 ---
 
