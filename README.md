@@ -6,7 +6,7 @@ Letzte Aktualisierung: **10/07/2026**
 
 Die Auswertung der bereits vorliegenden Benchmarkdaten (aktuell stehen nur drei Benchmarkläufe mit jeweils 800 BenchmarkRecords zur Auswahl) in Gestalt einer JSON-Datei, die alle BenchmarkRecords enthält, können im Rahmen eines Juypter-Notebooks durchgeführt werden:
 
-[Notebook für die Auswertung der Benchmarkdaten]([https://drive.google.com/file/d/1D6BBlFo7uSs8M_ATjUUiPW-YrXLvuas8/view?usp=sharing](https://drive.google.com/file/d/1D6BBlFo7uSs8M_ATjUUiPW-YrXLvuas8/view?usp=sharing))
+[Notebook für die Auswertung der Benchmarkdaten](https://drive.google.com/file/d/1D6BBlFo7uSs8M_ATjUUiPW-YrXLvuas8/view?usp=sharing)
 
 ## Projektbeschreibung
 
