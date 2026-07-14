@@ -1,12 +1,18 @@
 # MultiPortUpload
 
-Letzte Aktualisierung: **10/07/2026**
+Letzte Aktualisierung: **14.07.2026**
 
-## Auswertung der Messdaten über ein Jupyter-Notebook
+## Auswertung der Messdaten mit einem Jupyter Notebook
 
-Die Auswertung der bereits vorliegenden Benchmarkdaten (aktuell stehen nur drei Benchmarkläufe mit jeweils 800 BenchmarkRecords zur Auswahl) in Gestalt einer JSON-Datei, die alle BenchmarkRecords enthält, können im Rahmen eines Juypter-Notebooks durchgeführt werden:
+Die Auswertung der Benchmarkdaten erfolgt mithilfe eines Jupyter Notebooks. Als Eingabe dient eine JSON-Datei, die sämtliche während eines Benchmarklaufs aufgezeichneten BenchmarkRecords enthält.
 
-[Notebook für die Auswertung der Benchmarkdaten](https://colab.research.google.com/drive/1l1XEgywhpBlBBGaDxgxJXOZ2nD5RG_j8?usp=sharing)
+### Notebook zur Auswertung der Benchmarkdaten
+
+Das Notebook stellt mehrere JSON-Dateien aus identischen FullRun-Benchmarkläufen mit jeweils 800 BenchmarkRecords zur Auswahl bereit.
+
+Nach der Auswahl einer Benchmarkdatei werden die Daten automatisch ausgewertet. Das Notebook erstellt deskriptive Statistiken, führt die statistischen Hypothesentests durch und beantwortet die Forschungsfragen FF1 bis FF3 automatisiert. Darüber hinaus werden eine Executive Summary sowie eine Entscheidungsmatrix erzeugt.
+
+Alle Diagramme werden als PNG-Dateien gespeichert. Zusätzlich werden für jede Forschungsfrage sowie für den vollständigen Benchmarkbericht Markdown-Dateien im Unterverzeichnis output/reports des jeweiligen Benchmarklaufs erzeugt. Dadurch ist die gesamte Auswertung reproduzierbar und kann für beliebige Benchmarkläufe ohne manuelle Nachbearbeitung erneut durchgeführt werden.
 
 ## Projektbeschreibung
 
