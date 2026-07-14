@@ -6,7 +6,7 @@ Letzte Aktualisierung: **14.07.2026**
 
 Die Auswertung der Benchmarkdaten erfolgt mithilfe eines Jupyter Notebooks. Als Eingabe dient eine JSON-Datei, die sämtliche während eines Benchmarklaufs aufgezeichneten BenchmarkRecords enthält.
 
-### Notebook zur Auswertung der Benchmarkdaten
+[Notebook zur interaktiven Auswertung der Benchmarkdaten](https://drive.google.com/file/d/1-3Te5enE76I2E-ErPyzISck1Wm4PlKEf/view?usp=drive_link)
 
 Das Notebook stellt mehrere JSON-Dateien aus identischen FullRun-Benchmarkläufen mit jeweils 800 BenchmarkRecords zur Auswahl bereit.
 
